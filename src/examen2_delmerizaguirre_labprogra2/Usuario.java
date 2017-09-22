@@ -9,7 +9,7 @@ public class Usuario implements Serializable {
     private int edad;
     private String nick;
     private String pass;
-    private ArrayList<Cancion> playList = new ArrayList<>();
+    private ArrayList<PlayList> playList = new ArrayList<>();
     private ArrayList<Cancion> favoritos = new ArrayList<>();
 
     public Usuario(String nombre, String nick, String pass, int edad) {
@@ -43,14 +43,15 @@ public class Usuario implements Serializable {
         this.pass = pass;
     }
 
-    public ArrayList<Cancion> getPlayList() {
+    public ArrayList<PlayList> getPlayList() {
         return playList;
     }
 
-    public void setPlayList(ArrayList<Cancion> playList) {
+    public void setPlayList(ArrayList<PlayList> playList) {
         this.playList = playList;
     }
 
+   
     public ArrayList<Cancion> getFavoritos() {
         return favoritos;
     }
