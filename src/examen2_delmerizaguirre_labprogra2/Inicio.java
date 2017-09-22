@@ -92,6 +92,14 @@ public class Inicio extends javax.swing.JFrame {
         jl_usuarios = new javax.swing.JList<>();
         jLabel11 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        jd_reloj = new javax.swing.JDialog();
+        jLabel15 = new javax.swing.JLabel();
+        lb_maximo = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        lb_actual = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        lb_nombre = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         cb_misAlbunes = new javax.swing.JComboBox<>();
@@ -239,7 +247,7 @@ public class Inicio extends javax.swing.JFrame {
 
         jLabel7.setText("Duracion");
 
-        sp_segundos.setModel(new javax.swing.SpinnerNumberModel());
+        sp_segundos.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         jLabel8.setText("Seg");
 
@@ -363,6 +371,68 @@ public class Inicio extends javax.swing.JFrame {
                         .addGap(44, 44, 44)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(38, 38, 38))
+        );
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel15.setText("Duracion de la cancion:");
+
+        lb_maximo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lb_maximo.setText("00");
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel17.setText("segundos");
+
+        lb_actual.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        lb_actual.setText("00");
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel18.setText("Seg");
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel16.setText("Tiempo transcurrido");
+
+        lb_nombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lb_nombre.setText("Nombre");
+
+        javax.swing.GroupLayout jd_relojLayout = new javax.swing.GroupLayout(jd_reloj.getContentPane());
+        jd_reloj.getContentPane().setLayout(jd_relojLayout);
+        jd_relojLayout.setHorizontalGroup(
+            jd_relojLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_relojLayout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(jd_relojLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lb_nombre)
+                    .addComponent(jLabel17)
+                    .addGroup(jd_relojLayout.createSequentialGroup()
+                        .addGroup(jd_relojLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel16))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jd_relojLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lb_maximo)
+                            .addGroup(jd_relojLayout.createSequentialGroup()
+                                .addComponent(lb_actual)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel18)))))
+                .addContainerGap(130, Short.MAX_VALUE))
+        );
+        jd_relojLayout.setVerticalGroup(
+            jd_relojLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_relojLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lb_nombre)
+                .addGap(44, 44, 44)
+                .addGroup(jd_relojLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel17)
+                    .addComponent(lb_maximo))
+                .addGap(46, 46, 46)
+                .addGroup(jd_relojLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_relojLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lb_actual)
+                        .addComponent(jLabel18))
+                    .addComponent(jLabel16))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -862,7 +932,18 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        DefaultListModel lista = (DefaultListModel) jl_favoritas.getModel();
+        Cancion song = (Cancion) lista.getElementAt(jl_favoritas.getSelectedIndex());
+        lb_maximo.setText("" + song.getDuracion());
+        lb_nombre.setText(song.getNombre());
         
+        HiloCancion hilo = new HiloCancion(lb_actual, song.getDuracion(), jd_reloj);
+        hilo.start();
+        
+        jd_reloj.setModal(true);
+        jd_reloj.pack();
+        jd_reloj.setLocationRelativeTo(this);
+        jd_reloj.setVisible(true);
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -897,6 +978,10 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -928,11 +1013,15 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JDialog jd_Album;
     private javax.swing.JDialog jd_Cancion;
+    private javax.swing.JDialog jd_reloj;
     private javax.swing.JDialog jd_usuarios;
     private javax.swing.JList<String> jl_albunes;
     private javax.swing.JList<String> jl_favoritas;
     private javax.swing.JList<String> jl_usuarios;
     private javax.swing.JTree jt_playList;
+    private javax.swing.JLabel lb_actual;
+    private javax.swing.JLabel lb_maximo;
+    private javax.swing.JLabel lb_nombre;
     private javax.swing.JSpinner sp_segundos;
     private javax.swing.JTable tabla_canciones;
     private javax.swing.JTextField tf_Artista;
