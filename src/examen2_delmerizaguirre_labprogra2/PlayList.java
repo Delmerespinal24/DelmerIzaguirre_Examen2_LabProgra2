@@ -1,9 +1,10 @@
 
 package examen2_delmerizaguirre_labprogra2;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PlayList {
+public class PlayList implements Serializable{
     private String nombre;
     private ArrayList<Cancion> lista = new ArrayList<>();
 
