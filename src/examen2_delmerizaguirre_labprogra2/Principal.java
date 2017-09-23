@@ -214,8 +214,8 @@ public class Principal extends javax.swing.JFrame {
         String nick = tf_nick.getText();
         String pass = tf_pass.getText();
         for (Usuario user : AB.getBinario().getListaUsuarios()) {
-             System.out.println(user.getNick());
-                System.out.println(user.getPass());
+       ///      System.out.println(user.getNick());
+       //         System.out.println(user.getPass());
             if(user.getNick().equalsIgnoreCase(nick) && user.getPass().equals(pass)){
                
                 return true;

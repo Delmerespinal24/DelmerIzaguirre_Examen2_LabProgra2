@@ -864,6 +864,16 @@ public class Inicio extends javax.swing.JFrame {
         if (jl_albunes.getSelectedIndex() >= 0) {
             DefaultListModel modelo = (DefaultListModel) jl_albunes.getModel();
             Album select = (Album) modelo.getElementAt(jl_albunes.getSelectedIndex());
+            for (Cancion c : select.getLista()) {
+                for (Usuario user : ab.getBinario().getListaUsuarios()) {
+                    
+                    user.getFavoritos().remove(c);
+                    for (PlayList p : user.getPlayList()) {
+                        p.getLista().remove(c);
+                    }
+                }
+            }
+            
             modelo.remove(jl_albunes.getSelectedIndex());
             ab.getBinario().getListaAlbunes().remove(select);
             ActualizarCombobox();
