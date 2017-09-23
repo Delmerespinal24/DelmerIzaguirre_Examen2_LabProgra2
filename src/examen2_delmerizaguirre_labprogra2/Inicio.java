@@ -866,6 +866,7 @@ public class Inicio extends javax.swing.JFrame {
             Album select = (Album) modelo.getElementAt(jl_albunes.getSelectedIndex());
             modelo.remove(jl_albunes.getSelectedIndex());
             ab.getBinario().getListaAlbunes().remove(select);
+            ActualizarCombobox();
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
