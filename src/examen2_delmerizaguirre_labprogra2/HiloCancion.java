@@ -31,7 +31,8 @@ public class HiloCancion extends Thread{
         while(cuenta <= duracion){
             tiempo.setText("" + cuenta);
             cuenta++;
-            if(cuenta==duracion){
+            
+            if(cuenta==duracion+1){
                 JOptionPane.showMessageDialog(ventana,"La cancion a termindado");
                 ventana.dispose();
             }
